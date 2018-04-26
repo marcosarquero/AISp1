@@ -4,8 +4,7 @@ Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Marcos
 Implementation-Vendor-Id: es.codeurjc.ais
 Build-Jdk: 1.8.0_60
-Implementation-URL: http://projects.spring.io/spring-boot/tic-tac-toe-
- enunciado/
+Implementation-URL: http://projects.spring.io/spring-boot/m.arquero/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 
