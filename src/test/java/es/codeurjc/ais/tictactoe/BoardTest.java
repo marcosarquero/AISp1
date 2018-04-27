@@ -19,54 +19,54 @@ class BoardTest {
 	}
 
 	@Test
-	void testPlayer1Wins() {
+	void testPlayer0Wins() {
 		int[] expNum = {2,5,8};
 		int[] actNum;
-		board.getCell(2).value = "1"; //Jugador 1 marca la casilla 2
-		board.getCell(7).value = "2"; //Jugador 2 marca la casilla 7
-		board.getCell(4).value = "1"; //Jugador 1 marca la casilla 4
-		board.getCell(6).value = "2"; //Jugador 2 marca la casilla 6
-		board.getCell(8).value = "1"; //Jugador 1 marca la casilla 8
-		board.getCell(0).value = "2"; //Jugador 2 marca la casilla 0
+		board.getCell(2).value = "0"; //Jugador 0 marca la casilla 2
+		board.getCell(7).value = "1"; //Jugador 1 marca la casilla 7
+		board.getCell(4).value = "0"; //Jugador 0 marca la casilla 4
+		board.getCell(6).value = "1"; //Jugador 1 marca la casilla 6
+		board.getCell(8).value = "0"; //Jugador 0 marca la casilla 8
+		board.getCell(0).value = "1"; //Jugador 1 marca la casilla 0
 		
 		//Comprobamos que no ha ganado nadie todavía ni se ha empatado
+		assertNull(board.getCellsIfWinner("0"));
 		assertNull(board.getCellsIfWinner("1"));
-		assertNull(board.getCellsIfWinner("2"));
 		assertFalse(board.checkDraw());
 		
-		board.getCell(5).value = "1"; //Jugador 1 marca la casilla 5
+		board.getCell(5).value = "0"; //Jugador 0 marca la casilla 5
 		
-		//Comprobamos que ha ganado el jugador 1
-		actNum = board.getCellsIfWinner("1");
+		//Comprobamos que ha ganado el jugador 0
+		actNum = board.getCellsIfWinner("0");
 		assertNotNull(actNum);
 		for(int i=0; i<3; i++) {
 			assertEquals(actNum[i], expNum[i]);
 		}
-		assertNull(board.getCellsIfWinner("2"));
+		assertNull(board.getCellsIfWinner("1"));
 		assertFalse(board.checkDraw());
 		
 	}
 
 	@Test
-	void testPlayer1Looses() {
+	void testPlayer0Looses() {
 		int[] expNum = {6,4,2};
 		int[] actNum;
-		board.getCell(7).value = "1"; //Jugador 1 marca la casilla 7
-		board.getCell(2).value = "2"; //Jugador 2 marca la casilla 2
-		board.getCell(8).value = "1"; //Jugador 1 marca la casilla 8
-		board.getCell(6).value = "2"; //Jugador 2 marca la casilla 6
-		board.getCell(0).value = "1"; //Jugador 1 marca la casilla 0
+		board.getCell(7).value = "0"; //Jugador 0 marca la casilla 7
+		board.getCell(2).value = "1"; //Jugador 1 marca la casilla 2
+		board.getCell(8).value = "0"; //Jugador 0 marca la casilla 8
+		board.getCell(6).value = "1"; //Jugador 1 marca la casilla 6
+		board.getCell(0).value = "0"; //Jugador 0 marca la casilla 0
 		
 		//Comprobamos que no ha ganado nadie todavía ni se ha empatado
+		assertNull(board.getCellsIfWinner("0"));
 		assertNull(board.getCellsIfWinner("1"));
-		assertNull(board.getCellsIfWinner("2"));
 		assertFalse(board.checkDraw());
 		
-		board.getCell(4).value = "2"; //Jugador 2 marca la casilla 4
+		board.getCell(4).value = "1"; //Jugador 1 marca la casilla 4
 		
-		//Comprobamos que ha ganado el jugador 2
-		actNum = board.getCellsIfWinner("2");
-		assertNull(board.getCellsIfWinner("1"));
+		//Comprobamos que ha ganado el jugador 1
+		actNum = board.getCellsIfWinner("1");
+		assertNull(board.getCellsIfWinner("0"));
 		assertNotNull(actNum);
 		for(int i=0; i<3; i++) {
 			assertEquals(actNum[i], expNum[i]);
@@ -76,25 +76,25 @@ class BoardTest {
 	
 	@Test
 	void testDraw() {
-		board.getCell(4).value = "1"; //Jugador 1 marca la casilla 4
-		board.getCell(2).value = "2"; //Jugador 2 marca la casilla 2
-		board.getCell(8).value = "1"; //Jugador 1 marca la casilla 8
-		board.getCell(0).value = "2"; //Jugador 2 marca la casilla 0
-		board.getCell(1).value = "1"; //Jugador 1 marca la casilla 1
-		board.getCell(7).value = "2"; //Jugador 2 marca la casilla 7
-		board.getCell(3).value = "1"; //Jugador 1 marca la casilla 3
-		board.getCell(5).value = "2"; //Jugador 2 marca la casilla 5
+		board.getCell(4).value = "0"; //Jugador 0 marca la casilla 4
+		board.getCell(2).value = "1"; //Jugador 1 marca la casilla 2
+		board.getCell(8).value = "0"; //Jugador 0 marca la casilla 8
+		board.getCell(0).value = "1"; //Jugador 1 marca la casilla 0
+		board.getCell(1).value = "0"; //Jugador 0 marca la casilla 1
+		board.getCell(7).value = "1"; //Jugador 1 marca la casilla 7
+		board.getCell(3).value = "0"; //Jugador 0 marca la casilla 3
+		board.getCell(5).value = "1"; //Jugador 1 marca la casilla 5
 		
 		//Comprobamos que no ha ganado nadie todavía ni se ha empatado
+		assertNull(board.getCellsIfWinner("0"));
 		assertNull(board.getCellsIfWinner("1"));
-		assertNull(board.getCellsIfWinner("2"));
 		assertFalse(board.checkDraw());
 		
-		board.getCell(6).value = "1"; //Jugador 1 marca la casilla 6
+		board.getCell(6).value = "0"; //Jugador 0 marca la casilla 6
 		
 		//Comprobamos que hay empate
+		assertNull(board.getCellsIfWinner("0"));
 		assertNull(board.getCellsIfWinner("1"));
-		assertNull(board.getCellsIfWinner("2"));
 		assertTrue(board.checkDraw());
 	}
 
