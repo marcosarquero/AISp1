@@ -1,9 +1,13 @@
 
 package es.codeurjc.ais.tictactoe;
 
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.hamcrest.CoreMatchers.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
+import static org.hamcrest.CoreMatchers.*;
 import org.junit.jupiter.api.*;
 
 /**
@@ -12,16 +16,17 @@ import org.junit.jupiter.api.*;
  */
 class BoardTest {
 	Board board;
+	int[] actNum;
+	List<Integer> l;
 
 	@BeforeEach
 	void setUp(){
 		board = new Board();
+		l = new LinkedList<Integer>();
 	}
 
 	@Test
 	void testPlayer0Wins() {
-		int[] expNum = {2,5,8};
-		int[] actNum;
 		board.getCell(2).value = "0"; //Jugador 0 marca la casilla 2
 		board.getCell(7).value = "1"; //Jugador 1 marca la casilla 7
 		board.getCell(4).value = "0"; //Jugador 0 marca la casilla 4
@@ -36,12 +41,14 @@ class BoardTest {
 		
 		board.getCell(5).value = "0"; //Jugador 0 marca la casilla 5
 		
-		//Comprobamos que ha ganado el jugador 0
-		actNum = board.getCellsIfWinner("0");
+		//getCellsIfWinner devulve array de enteros, pero necesitamos iterable, así que creamos una lista
+		actNum = board.getCellsIfWinner("0"); 
 		assertNotNull(actNum);
 		for(int i=0; i<3; i++) {
-			assertEquals(actNum[i], expNum[i]);
+			l.add(actNum[i]);
 		}
+		//Comprobamos que ha ganado el jugador 0
+		assertThat(l,hasItems(2,5,8));
 		assertNull(board.getCellsIfWinner("1"));
 		assertFalse(board.checkDraw());
 		
@@ -49,8 +56,6 @@ class BoardTest {
 
 	@Test
 	void testPlayer0Looses() {
-		int[] expNum = {6,4,2};
-		int[] actNum;
 		board.getCell(7).value = "0"; //Jugador 0 marca la casilla 7
 		board.getCell(2).value = "1"; //Jugador 1 marca la casilla 2
 		board.getCell(8).value = "0"; //Jugador 0 marca la casilla 8
@@ -64,13 +69,16 @@ class BoardTest {
 		
 		board.getCell(4).value = "1"; //Jugador 1 marca la casilla 4
 		
-		//Comprobamos que ha ganado el jugador 1
-		actNum = board.getCellsIfWinner("1");
-		assertNull(board.getCellsIfWinner("0"));
+		
+		//getCellsIfWinner devulve array de enteros, pero necesitamos iterable, así que creamos una lista
+		actNum = board.getCellsIfWinner("1"); 
 		assertNotNull(actNum);
 		for(int i=0; i<3; i++) {
-			assertEquals(actNum[i], expNum[i]);
+			l.add(actNum[i]);
 		}
+		//Comprobamos que ha ganado el jugador 0
+		assertThat(l,hasItems(2,4,6));
+		assertNull(board.getCellsIfWinner("0"));
 		assertFalse(board.checkDraw());
 	}
 	

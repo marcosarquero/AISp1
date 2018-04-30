@@ -27,7 +27,6 @@ class TicTacToeGameTest {
 	TicTacToeGame game;
 	Connection con1, con2;
 	Player p0, p1;
-	private List<Player> players = new CopyOnWriteArrayList<>();
 
 	@BeforeEach
 	void setUp(){
@@ -38,36 +37,62 @@ class TicTacToeGameTest {
 		p1 = new Player(1,"raul", "Raul");
 		game.addConnection(con1);
 		game.addConnection(con2);
-	}
-
-	@Test
-	void testPlayer0Wins() {
+		
+		// /*
 		game.addPlayer(p0);
-		players.add(p0);
-		//verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p1, p2)));
-		verify(con1).sendEvent(eq(EventType.JOIN_GAME), eq(players));
-		verify(con2).sendEvent(eq(EventType.JOIN_GAME), eq(players));
+		//Comprobamos que ambas conexiones reciben JOIN_GAME, y el jugador p0
+		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
+		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
 		reset(con1);
 		reset(con2);
 		game.addPlayer(p1);
-		players.add(p1);
-		verify(con1).sendEvent(eq(EventType.JOIN_GAME), eq(players));
-		verify(con2).sendEvent(eq(EventType.JOIN_GAME), eq(players));
+		//Comprobamos que ambas conexiones reciben JOIN_GAME, y los jugadores p0 y p1
+		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0,p1)));
+		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0,p1)));
+		//Comprobamos que ambas conexiones reciben SET_TURN, con el jugador p0
 		verify(con1).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con2).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		reset(con1);
 		reset(con2);
-		game.mark(2);
-		game.mark(7);
-		game.mark(4);
-		game.mark(6);
-		game.mark(8);
-		game.mark(0);
+		// */
+		
+	}
+
+	@Test
+	void testPlayer0Wins() {
+		/*
+		game.addPlayer(p0);
+		//Comprobamos que ambas conexiones reciben JOIN_GAME, y el jugador p0
+		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
+		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
+		reset(con1);
+		reset(con2);
+		game.addPlayer(p1);
+		//Comprobamos que ambas conexiones reciben JOIN_GAME, y los jugadores p0 y p1
+		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0,p1)));
+		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0,p1)));
+		//Comprobamos que ambas conexiones reciben SET_TURN, con el jugador p0
+		verify(con1).sendEvent(eq(EventType.SET_TURN), eq(p0));
+		verify(con2).sendEvent(eq(EventType.SET_TURN), eq(p0));
+		reset(con1);
+		reset(con2);
+		*/
+		game.mark(2); //Jugador 0 marca casilla 2
+		game.mark(7); //Jugador 1 marca casilla 7
+		game.mark(4); //Jugador 0 marca casilla 4
+		game.mark(6); //Jugador 1 marca casilla 6
+		game.mark(8); //Jugador 0 marca casilla 8
+		game.mark(0); //Jugador 1 marca casilla 0
+		
+		//Comprobamos las veces que cada conexion ha recibido SET_TURN con cada jugador
 		verify(con1,times(3)).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con2,times(3)).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con1,times(3)).sendEvent(eq(EventType.SET_TURN), eq(p1));
 		verify(con2,times(3)).sendEvent(eq(EventType.SET_TURN), eq(p1));
-		game.mark(5);
+		
+		game.mark(5); //Jugador 0 marca casilla 5
+		
+		//Comprobamos que ha ganado el jugador 0
 		ArgumentCaptor<WinnerValue> argument = ArgumentCaptor.forClass(WinnerValue.class);
 	    verify(con1).sendEvent(eq(EventType.GAME_OVER), argument.capture());
 	    assertNotNull(argument.getValue());
@@ -76,31 +101,38 @@ class TicTacToeGameTest {
 	
 	@Test
 	void testPlayer0Looses() {
+		/*
 		game.addPlayer(p0);
-		players.add(p0);
-		//verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p1, p2)));
-		verify(con1).sendEvent(eq(EventType.JOIN_GAME), eq(players));
-		verify(con2).sendEvent(eq(EventType.JOIN_GAME), eq(players));
+		//Comprobamos que ambas conexiones reciben JOIN_GAME, y el jugador p0
+		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
+		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
 		reset(con1);
 		reset(con2);
 		game.addPlayer(p1);
-		players.add(p1);
-		verify(con1).sendEvent(eq(EventType.JOIN_GAME), eq(players));
-		verify(con2).sendEvent(eq(EventType.JOIN_GAME), eq(players));
+		//Comprobamos que ambas conexiones reciben JOIN_GAME, y los jugadores p0 y p1
+		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0,p1)));
+		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0,p1)));
+		//Comprobamos que ambas conexiones reciben SET_TURN, con el jugador p0
 		verify(con1).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con2).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		reset(con1);
 		reset(con2);
-		game.mark(7);
-		game.mark(2);
-		game.mark(8);
-		game.mark(6);
-		game.mark(0);
+		*/
+		game.mark(7); //Jugador 0 marca casilla 7
+		game.mark(2); //Jugador 1 marca casilla 2
+		game.mark(8); //Jugador 0 marca casilla 8
+		game.mark(6); //Jugador 1 marca casilla 6
+		game.mark(0); //Jugador 0 marca casilla 0
+		
+		//Comprobamos las veces que cada conexion ha recibido SET_TURN con cada jugador
 		verify(con1,times(2)).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con2,times(2)).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con1,times(3)).sendEvent(eq(EventType.SET_TURN), eq(p1));
 		verify(con2,times(3)).sendEvent(eq(EventType.SET_TURN), eq(p1));
-		game.mark(4);
+		
+		game.mark(4); //Jugador 1 marca casilla 4
+		
+		//Comprobamos que ha ganado el jugador 1
 		ArgumentCaptor<WinnerValue> argument = ArgumentCaptor.forClass(WinnerValue.class);
 	    verify(con1).sendEvent(eq(EventType.GAME_OVER), argument.capture());
 	    assertNotNull(argument.getValue());
@@ -109,34 +141,41 @@ class TicTacToeGameTest {
 	
 	@Test
 	void testDraw() {
+		/*
 		game.addPlayer(p0);
-		players.add(p0);
-		//verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p1, p2)));
-		verify(con1).sendEvent(eq(EventType.JOIN_GAME), eq(players));
-		verify(con2).sendEvent(eq(EventType.JOIN_GAME), eq(players));
+		//Comprobamos que ambas conexiones reciben JOIN_GAME, y el jugador p0
+		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
+		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
 		reset(con1);
 		reset(con2);
 		game.addPlayer(p1);
-		players.add(p1);
-		verify(con1).sendEvent(eq(EventType.JOIN_GAME), eq(players));
-		verify(con2).sendEvent(eq(EventType.JOIN_GAME), eq(players));
+		//Comprobamos que ambas conexiones reciben JOIN_GAME, y los jugadores p0 y p1
+		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0,p1)));
+		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0,p1)));
+		//Comprobamos que ambas conexiones reciben SET_TURN, con el jugador p0
 		verify(con1).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con2).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		reset(con1);
 		reset(con2);
-		game.mark(4);
-		game.mark(2);
-		game.mark(8);
-		game.mark(0);
-		game.mark(1);
-		game.mark(7);
-		game.mark(3);
-		game.mark(5);
+		*/
+		game.mark(4); //Jugador 0 marca casilla 4
+		game.mark(2); //Jugador 1 marca casilla 2
+		game.mark(8); //Jugador 0 marca casilla 8
+		game.mark(0); //Jugador 1 marca casilla 0
+		game.mark(1); //Jugador 0 marca casilla 1
+		game.mark(7); //Jugador 1 marca casilla 7
+		game.mark(3); //Jugador 0 marca casilla 3
+		game.mark(5); //Jugador 1 marca casilla 5
+		
+		//Comprobamos las veces que cada conexion ha recibido SET_TURN con cada jugador
 		verify(con1,times(4)).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con2,times(4)).sendEvent(eq(EventType.SET_TURN), eq(p0));
 		verify(con1,times(4)).sendEvent(eq(EventType.SET_TURN), eq(p1));
 		verify(con2,times(4)).sendEvent(eq(EventType.SET_TURN), eq(p1));
-		game.mark(6);
+		
+		game.mark(6); //Jugador 0 marca casilla 6
+		
+		//Comprobamos que han empatado
 		ArgumentCaptor<WinnerValue> argument = ArgumentCaptor.forClass(WinnerValue.class);
 	    verify(con1).sendEvent(eq(EventType.GAME_OVER), argument.capture());
 	    assertNull(argument.getValue());
