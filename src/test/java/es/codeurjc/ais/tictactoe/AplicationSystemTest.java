@@ -1,11 +1,8 @@
 package es.codeurjc.ais.tictactoe;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,18 +18,18 @@ public class AplicationSystemTest {
 	WebElement[] casillas0, casillas1;
 	WebDriverWait wait0, wait1;
 
-	@BeforeAll
+	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		ChromeDriverManager.getInstance().setup();
-		//WebApp.start();
+		WebApp.start();
 	}
 
-	@AfterAll
+	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		//WebApp.stop();
+		WebApp.stop();
 	}
 
-	@BeforeEach
+	@Before
 	public void setUp() throws Exception {
 		d0 = new ChromeDriver();
 		d1 = new ChromeDriver();
@@ -52,7 +49,7 @@ public class AplicationSystemTest {
 		}
 	}
 
-	@AfterEach
+	@After
 	public void tearDown() throws Exception {
 		d0.quit();
 		d1.quit();

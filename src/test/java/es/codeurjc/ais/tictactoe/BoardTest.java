@@ -2,12 +2,13 @@
 package es.codeurjc.ais.tictactoe;
 
 import static org.hamcrest.CoreMatchers.hasItems;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.*;
+
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.jupiter.api.*;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author Marcos Arquero Castillo
@@ -18,7 +19,7 @@ public class BoardTest {
 	int[] actNum;
 	List<Integer> l;
 
-	@BeforeEach
+	@Before
 	public void setUp(){
 		board = new Board();
 		l = new LinkedList<Integer>();

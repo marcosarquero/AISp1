@@ -1,20 +1,11 @@
 package es.codeurjc.ais.tictactoe;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatcher;
-
 import es.codeurjc.ais.tictactoe.TicTacToeGame.EventType;
 import es.codeurjc.ais.tictactoe.TicTacToeGame.WinnerValue;
 
@@ -28,7 +19,7 @@ public class TicTacToeGameTest {
 	Connection con1, con2;
 	Player p0, p1;
 
-	@BeforeEach
+	@Before
 	public void setUp(){
 		game = new TicTacToeGame();
 		con1 = mock(Connection.class);
