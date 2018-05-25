@@ -43,7 +43,7 @@ public class AplicationSystemTest {
 		d1.findElement(By.id("startBtn")).click();
 		casillas0 = new WebElement[9];
 		casillas1 = new WebElement[9];
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		for (int i=0; i<9; i++) {
 			casillas0[i] = d0.findElement(By.id("cell-"+i));
 			casillas1[i] = d1.findElement(By.id("cell-"+i));
@@ -67,41 +67,66 @@ public class AplicationSystemTest {
 	}
 	
 	@Test
-	public void testPlayer0Wins() {
+	public void testPlayer0Wins() throws InterruptedException {
+		Thread.sleep(500);
 		pulsar(0,2);
+		Thread.sleep(500);
 		pulsar(1,7);
+		Thread.sleep(500);
 		pulsar(0,4);
+		Thread.sleep(500);
 		pulsar(1,6);
+		Thread.sleep(500);
 		pulsar(0,8);
+		Thread.sleep(500);
 		pulsar(1,0);
+		Thread.sleep(500);
 		pulsar(0,5);
+		Thread.sleep(500);
 		assertEquals(d0.switchTo().alert().getText(),"Amanda wins! Luis looses.");
 		assertEquals(d1.switchTo().alert().getText(),"Amanda wins! Luis looses.");
 	}
 	
 	@Test
-	public void testPlayer0Looses() {
+	public void testPlayer0Looses() throws InterruptedException {
+		Thread.sleep(500);
 		casillas0[7].click();
+		Thread.sleep(500);
 		casillas1[2].click();
+		Thread.sleep(500);
 		casillas0[8].click();
+		Thread.sleep(500);
 		casillas1[6].click();
+		Thread.sleep(500);
 		casillas0[0].click();
+		Thread.sleep(500);
 		casillas1[4].click();
+		Thread.sleep(500);
 		assertEquals(d0.switchTo().alert().getText(),"Luis wins! Amanda looses.");
 		assertEquals(d1.switchTo().alert().getText(),"Luis wins! Amanda looses.");
 	}
 	
 	@Test
-	public void testDraw() {
+	public void testDraw() throws InterruptedException {
+		Thread.sleep(500);
 		casillas0[4].click();
+		Thread.sleep(500);
 		casillas1[2].click();
+		Thread.sleep(500);
 		casillas0[8].click();
+		Thread.sleep(500);
 		casillas1[0].click();
+		Thread.sleep(500);
 		casillas0[1].click();
+		Thread.sleep(500);
 		casillas1[7].click();
+		Thread.sleep(500);
 		casillas0[3].click();
+		Thread.sleep(500);
 		casillas1[5].click();
+		Thread.sleep(500);
 		casillas0[6].click();
+		Thread.sleep(500);
 		assertEquals(d0.switchTo().alert().getText(),"Draw!");
 		assertEquals(d1.switchTo().alert().getText(),"Draw!");
 	}
