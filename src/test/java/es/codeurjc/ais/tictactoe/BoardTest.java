@@ -1,13 +1,13 @@
 
 package es.codeurjc.ais.tictactoe;
 
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
 import org.junit.jupiter.api.*;
 
 /**
