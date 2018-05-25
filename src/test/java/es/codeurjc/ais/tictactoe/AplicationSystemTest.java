@@ -43,6 +43,7 @@ public class AplicationSystemTest {
 		d1.findElement(By.id("startBtn")).click();
 		casillas0 = new WebElement[9];
 		casillas1 = new WebElement[9];
+		Thread.sleep(1000);
 		for (int i=0; i<9; i++) {
 			casillas0[i] = d0.findElement(By.id("cell-"+i));
 			casillas1[i] = d1.findElement(By.id("cell-"+i));
