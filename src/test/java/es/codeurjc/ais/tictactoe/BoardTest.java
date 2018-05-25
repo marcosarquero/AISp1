@@ -13,19 +13,19 @@ import org.junit.jupiter.api.*;
  * @author Marcos Arquero Castillo
  *
  */
-class BoardTest {
+public class BoardTest {
 	Board board;
 	int[] actNum;
 	List<Integer> l;
 
 	@BeforeEach
-	void setUp(){
+	public void setUp(){
 		board = new Board();
 		l = new LinkedList<Integer>();
 	}
 
 	@Test
-	void testPlayer0Wins() {
+	public void testPlayer0Wins() {
 		board.getCell(2).value = "0"; //Jugador 0 marca la casilla 2
 		board.getCell(7).value = "1"; //Jugador 1 marca la casilla 7
 		board.getCell(4).value = "0"; //Jugador 0 marca la casilla 4
@@ -54,7 +54,7 @@ class BoardTest {
 	}
 
 	@Test
-	void testPlayer0Looses() {
+	public void testPlayer0Looses() {
 		board.getCell(7).value = "0"; //Jugador 0 marca la casilla 7
 		board.getCell(2).value = "1"; //Jugador 1 marca la casilla 2
 		board.getCell(8).value = "0"; //Jugador 0 marca la casilla 8
@@ -82,7 +82,7 @@ class BoardTest {
 	}
 	
 	@Test
-	void testDraw() {
+	public void testDraw() {
 		board.getCell(4).value = "0"; //Jugador 0 marca la casilla 4
 		board.getCell(2).value = "1"; //Jugador 1 marca la casilla 2
 		board.getCell(8).value = "0"; //Jugador 0 marca la casilla 8

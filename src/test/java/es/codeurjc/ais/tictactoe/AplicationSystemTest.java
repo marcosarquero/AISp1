@@ -15,25 +15,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
-class AplicationSystemTest {
+public class AplicationSystemTest {
 	WebDriver d0, d1;
 	WebElement nick0, nick1;
 	WebElement[] casillas0, casillas1;
 	WebDriverWait wait0, wait1;
 
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() throws Exception {
 		ChromeDriverManager.getInstance().setup();
 		//WebApp.start();
 	}
 
 	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	public static void tearDownAfterClass() throws Exception {
 		//WebApp.stop();
 	}
 
 	@BeforeEach
-	void setUp() throws Exception {
+	public void setUp() throws Exception {
 		d0 = new ChromeDriver();
 		d1 = new ChromeDriver();
 		wait0 = new WebDriverWait(d0, 30);
@@ -53,7 +53,7 @@ class AplicationSystemTest {
 	}
 
 	@AfterEach
-	void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		d0.quit();
 		d1.quit();
 	}
@@ -69,7 +69,7 @@ class AplicationSystemTest {
 	}
 	
 	@Test
-	void testPlayer0Wins() {
+	public void testPlayer0Wins() {
 		pulsar(0,2);
 		pulsar(1,7);
 		pulsar(0,4);
@@ -82,7 +82,7 @@ class AplicationSystemTest {
 	}
 	
 	@Test
-	void testPlayer0Looses() {
+	public void testPlayer0Looses() {
 		casillas0[7].click();
 		casillas1[2].click();
 		casillas0[8].click();
@@ -94,7 +94,7 @@ class AplicationSystemTest {
 	}
 	
 	@Test
-	void testDraw() {
+	public void testDraw() {
 		casillas0[4].click();
 		casillas1[2].click();
 		casillas0[8].click();

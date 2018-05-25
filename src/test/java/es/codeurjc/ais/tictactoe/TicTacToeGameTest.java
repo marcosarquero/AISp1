@@ -23,13 +23,13 @@ import es.codeurjc.ais.tictactoe.TicTacToeGame.WinnerValue;
  *
  */
 
-class TicTacToeGameTest {
+public class TicTacToeGameTest {
 	TicTacToeGame game;
 	Connection con1, con2;
 	Player p0, p1;
 
 	@BeforeEach
-	void setUp(){
+	public void setUp(){
 		game = new TicTacToeGame();
 		con1 = mock(Connection.class);
 		con2 = mock(Connection.class);
@@ -59,7 +59,7 @@ class TicTacToeGameTest {
 	}
 
 	@Test
-	void testPlayer0Wins() {
+	public void testPlayer0Wins() {
 		/*
 		game.addPlayer(p0);
 		//Comprobamos que ambas conexiones reciben JOIN_GAME, y el jugador p0
@@ -100,7 +100,7 @@ class TicTacToeGameTest {
 	}
 	
 	@Test
-	void testPlayer0Looses() {
+	public void testPlayer0Looses() {
 		/*
 		game.addPlayer(p0);
 		//Comprobamos que ambas conexiones reciben JOIN_GAME, y el jugador p0
@@ -140,7 +140,7 @@ class TicTacToeGameTest {
 	}
 	
 	@Test
-	void testDraw() {
+	public void testDraw() {
 		/*
 		game.addPlayer(p0);
 		//Comprobamos que ambas conexiones reciben JOIN_GAME, y el jugador p0
