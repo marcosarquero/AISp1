@@ -75,6 +75,7 @@ public class AplicationSystemTest {
 		pulsar(0,8);
 		pulsar(1,0);
 		pulsar(0,5);
+		Thread.sleep(500);
 		assertEquals(d0.switchTo().alert().getText(),"Amanda wins! Luis looses.");
 		assertEquals(d1.switchTo().alert().getText(),"Amanda wins! Luis looses.");
 	}
@@ -87,6 +88,7 @@ public class AplicationSystemTest {
 		pulsar(1,6);
 		pulsar(0,0);
 		pulsar(1,4);
+		Thread.sleep(500);
 		assertEquals(d0.switchTo().alert().getText(),"Luis wins! Amanda looses.");
 		assertEquals(d1.switchTo().alert().getText(),"Luis wins! Amanda looses.");
 	}
@@ -102,6 +104,7 @@ public class AplicationSystemTest {
 		pulsar(0,3);
 		pulsar(1,5);
 		pulsar(0,6);
+		Thread.sleep(500);
 		assertEquals(d0.switchTo().alert().getText(),"Draw!");
 		assertEquals(d1.switchTo().alert().getText(),"Draw!");
 	}
