@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 public class AplicationSystemTest {
@@ -56,7 +55,8 @@ public class AplicationSystemTest {
 		d1.quit();
 	}
 
-	void pulsar(int player, int cell) {
+	void pulsar(int player, int cell) throws InterruptedException {
+		Thread.sleep(500);
 		if (player == 0) {
 			wait0.until(ExpectedConditions.elementToBeClickable(By.id("cell-"+cell)));
 			casillas0[cell].click();
@@ -68,65 +68,40 @@ public class AplicationSystemTest {
 	
 	@Test
 	public void testPlayer0Wins() throws InterruptedException {
-		Thread.sleep(500);
 		pulsar(0,2);
-		Thread.sleep(500);
 		pulsar(1,7);
-		Thread.sleep(500);
 		pulsar(0,4);
-		Thread.sleep(500);
 		pulsar(1,6);
-		Thread.sleep(500);
 		pulsar(0,8);
-		Thread.sleep(500);
 		pulsar(1,0);
-		Thread.sleep(500);
 		pulsar(0,5);
-		Thread.sleep(500);
 		assertEquals(d0.switchTo().alert().getText(),"Amanda wins! Luis looses.");
 		assertEquals(d1.switchTo().alert().getText(),"Amanda wins! Luis looses.");
 	}
 	
 	@Test
 	public void testPlayer0Looses() throws InterruptedException {
-		Thread.sleep(500);
-		casillas0[7].click();
-		Thread.sleep(500);
-		casillas1[2].click();
-		Thread.sleep(500);
-		casillas0[8].click();
-		Thread.sleep(500);
-		casillas1[6].click();
-		Thread.sleep(500);
-		casillas0[0].click();
-		Thread.sleep(500);
-		casillas1[4].click();
-		Thread.sleep(500);
+		pulsar(0,7);
+		pulsar(1,2);
+		pulsar(0,8);
+		pulsar(1,6);
+		pulsar(0,0);
+		pulsar(1,4);
 		assertEquals(d0.switchTo().alert().getText(),"Luis wins! Amanda looses.");
 		assertEquals(d1.switchTo().alert().getText(),"Luis wins! Amanda looses.");
 	}
 	
 	@Test
 	public void testDraw() throws InterruptedException {
-		Thread.sleep(500);
-		casillas0[4].click();
-		Thread.sleep(500);
-		casillas1[2].click();
-		Thread.sleep(500);
-		casillas0[8].click();
-		Thread.sleep(500);
-		casillas1[0].click();
-		Thread.sleep(500);
-		casillas0[1].click();
-		Thread.sleep(500);
-		casillas1[7].click();
-		Thread.sleep(500);
-		casillas0[3].click();
-		Thread.sleep(500);
-		casillas1[5].click();
-		Thread.sleep(500);
-		casillas0[6].click();
-		Thread.sleep(500);
+		pulsar(0,4);
+		pulsar(1,2);
+		pulsar(0,8);
+		pulsar(1,0);
+		pulsar(0,1);
+		pulsar(1,7);
+		pulsar(0,3);
+		pulsar(1,5);
+		pulsar(0,6);
 		assertEquals(d0.switchTo().alert().getText(),"Draw!");
 		assertEquals(d1.switchTo().alert().getText(),"Draw!");
 	}

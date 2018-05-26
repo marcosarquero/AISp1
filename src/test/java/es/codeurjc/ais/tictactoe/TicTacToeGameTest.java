@@ -34,7 +34,7 @@ public class TicTacToeGameTest {
 		//Comprobamos que ambas conexiones reciben JOIN_GAME, y el jugador p0
 		verify(con1).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
 		verify(con2).sendEvent(eq(EventType.JOIN_GAME), argThat(hasItems(p0)));
-		reset(con1);
+		//reset(con1);
 		reset(con2);
 		game.addPlayer(p1);
 		//Comprobamos que ambas conexiones reciben JOIN_GAME, y los jugadores p0 y p1

@@ -6,15 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 /**
  * @author Marcos Arquero Castillo
  *
  */
 
-//@RunWith(Parameterized.class)
 public class BoardTest {
 	Board board;
 	int[] actNum;
@@ -70,13 +67,13 @@ public class BoardTest {
 		
 		board.getCell(4).value = "1"; //Jugador 1 marca la casilla 4
 		
-		
 		//getCellsIfWinner devulve array de enteros, pero necesitamos iterable, así que creamos una lista
 		actNum = board.getCellsIfWinner("1"); 
 		assertNotNull(actNum);
 		for(int i=0; i<3; i++) {
 			l.add(actNum[i]);
 		}
+		
 		//Comprobamos que ha ganado el jugador 0
 		assertThat(l,hasItems(2,4,6));
 		assertNull(board.getCellsIfWinner("0"));
