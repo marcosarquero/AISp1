@@ -1,19 +1,20 @@
-
 package es.codeurjc.ais.tictactoe;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.*;
-
 import java.util.LinkedList;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
  * @author Marcos Arquero Castillo
  *
  */
+
+//@RunWith(Parameterized.class)
 public class BoardTest {
 	Board board;
 	int[] actNum;
